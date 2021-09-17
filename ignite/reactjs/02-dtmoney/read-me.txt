@@ -1,0 +1,11 @@
+Para criar este projeto foi utilizado o comando com
+
+yarn create react-app --template typescript
+
+desta forma o projeto já criado pronto para utilizar o typescript.
+
+Também foi instalado o styled-components para melhorar a forma como trabalhar com estilos dentro do projeto.
+
+yarn add styled-components 
+yarn add @types/styled-components -D
+
