@@ -1,0 +1,82 @@
+Dependencias minimas para se iniciar desenvolvimento com react
+
+yarn add react react-dom
+yarn add babel-cli babel-core babel-preset-env babel-loader babel-preset-react -D
+yarn add webpack webpack-cli webpack-dev-server html-webpack-plugin -D
+yarn add cross-env -D
+yarn add style-loader css-loader node-sass sass-loader -D
+yarn add @pmmmwh/react-refresh-webpack-plugin react-refresh -D
+
+DEPENDENCIAS IMPORTANTES POREM NAO FUNDAMENTAIS PARA O REACTOR
+
+yarn add typescript @babel/preset-typescript @types/react-dom -D
+
+__________ YARN __________
+
+yarn init   --> inicia o package.json no projeto
+yarn add {biblioteca} -D   --> dependecia dev
+
+__________ BABEL __________
+
+Responsavel pela transpilação do codigo em javascript puro.
+
+-- As configurações do babel ficam no arquivo babel.config.js
+
+babel-cli -> biblioteca para poder usar o babel via linha de comando
+babel-core -> biblioteca que contem 99% das funcionalidades do babel
+babel-preset-env -> identifica o ambiente ( dev, prod ) que o codigo esta sendo executado para fazer o melhor tratamento possivel
+babel-preset-react -> consegue fazer a leitura de html dentro de uma função .js ( sem esse preset não é possivel implementar componentes react);
+babel-loader -> Integração entre o babel e o webpack
+
+Executando babel num arquivo e jogando o resultado para outro arquivo dentro da pasta dist.
+yarn babel src/index.jsx --out-file dist/bundle.js
+
+A partir da versão 17 do react, não é mais necessario importar o React para trabalhar com jsx nos arquivos,
+basta no babel.config.js atribuir a propriedade runtime as configs do preset-react
+conforme já esta presente neste projeto.
+
+__________ WEBPACK __________
+
+Responsavel pela configuração dos loaders
+
+-- As configurações do webpack ficam no arquivo webpack.config.js
+
+webpack --> Responsavel por uma serie de configurações (loaders) para que o projeto possa aceitar diversos tipos de imports de extensões diferentes ( sass, less, json, imagens, etc...)
+webpack-cli --> Deixa webpack disponivel para usar em linha de comando
+html-webpack-plugin --> com o uso deste plugin não precisa fazer o importo do bundle.js dentro do .html, a biblioteca cuida desse import.
+cross-env --> Responsavel por controlar variaveis de ambiente independente do sistema operacional, bom para diferencionar entre ambiente de DEV e PROD
+
+Dependendo do sistema operacional as barras para indicar o local do arquivo podem causar problemas,
+para evitar este tipo de problema usamos a biblioteca path do proprio node
+
+const path = require('path')
+path.resolve(__dirname, 'src', 'index.jsx') --> __dirname é o diretorio aonde se encontra o arquivo em questao, o segundo parametro é a pasta que queremos acessar, e o terceiro parametro o arquivo.
+
+a propriedade mode é responsavel por dizer para qual ambiente aquela configuração irá executar
+podendo ser 2 opções development ou production.
+
+no webpack a propriedade entry é o arquivo que o webpack fará a leitura
+e a propriedade output será para onde esse novo arquivo com as configurações será será criado
+
+a propriedade resolve vai definir quais tipos de extensões o projeto vai ler
+
+a propriedade module ficarão as configurações do import de cada tipo de arquivo diferente.
+
+a propriedade plugin adiciona recursos ao webpack, como poder configurar o bundle.js para ser inserido no arquivo index.html de forma automatica
+
+a propriedade devServer permite que a cada alteração que acontecer no codigo, o bundle seja atualizado automaticamente, sempre precisar executar yarn webpack por alteração.
+webpack-dev-server -> Ao atualizar o estado sempre volta a 0. ( ruim )
+Utilizar a opção @pmmmwh/react-refresh-webpack-plugin react-refresh
+
+
+a propriedade sourceMaps permite visualizar a forma original do arquivo no browser em caso de erro para facilitar encontrar a causa do problema.
+
+__________ TYPESCRIPT __________
+
+Após instalar a dependencia podemos devemos iniciar o arquivo de configuração do typescript no projeto de configuração no projeto de configuração no projeto. (tsc pode ser trocado por typescript)
+yarn tsc --init
+
+
+
+
+

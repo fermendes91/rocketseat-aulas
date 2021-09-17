@@ -1,0 +1,31 @@
+OPTIONS = Retorna somente as Opções de requisição daquele endpoint ( GET, POST, DELETE, PUT... )
+PUT / PATCH = O put deveria alterar todo o conteudo do objeto, o patch somente parte dele no caso uma variavel de dentro de um objeto
+HEAD = Só retorna os headers.
+
+using curl to consume services from application
+
+ // GET
+ curl http://localhost:3000/posts
+ curl -v http://localhost:3000/posts
+
+ // POST
+ curl -d '{"id": 2, "title": "json-server-2", "author": "Fernando Mendes"}' -H "Content-Type: application/json" -X POST http://localhost:3000/posts
+
+ // PUT
+ curl -X PUT -d '{"title": "alter-value"}' http://localhost:3000/posts/{id}
+ curl -X PUT -H "Content-Type: multipart/form-data;" -d '{"title": "alter-value"}' http://localhost:3000/posts/{id}
+ 
+ // DELETE
+curl -X DELETE http://localhost:3000/posts/{id}
+
+________________________________
+___________ COMMANDS ___________
+
+obs: o curl puro só retorna o corpo da resposta.
+
+ -X = METHOD_TYPE (POST, DELETE, PUT)
+ -d = data (body) da requisição
+ -i / -I = retornar cabeçalho da resposta
+ -v = verbose (retorna todos os dados requisição)
+ -k = ignora certificados invalidos ou auto-assinados
+ -H = passagem de parametro header.
