@@ -9,6 +9,7 @@ Também foi instalado o styled-components para melhorar a forma como trabalhar c
 yarn add styled-components 
 yarn add @types/styled-components -D
 
+________________
 
 Para simular e preparar o nosso ambiente para chamada de API's podemos utilizar o miragejs para simular
 na configuração no projeto
@@ -16,3 +17,15 @@ na configuração no projeto
 o /api é o caminho padrão da API não se altera. o this.get() é o mock de serviço para a requisição.
 
 yarn add miragejs
+
+________________
+
+react-modal para trabalhar com modals.
+
+yarn add react-modal
+
+________________
+
+dependencia polished adicionada ao projeto, a
+
+ajuda a manipular css dentro do styled-components.
