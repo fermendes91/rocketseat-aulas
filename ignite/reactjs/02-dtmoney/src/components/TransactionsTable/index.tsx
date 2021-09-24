@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { api } from "../../services/axios";
+import { useTransactions } from "../../hooks/useTransactions";
 import { Container } from "./styles";
 
 interface Transaction {
@@ -12,11 +11,7 @@ interface Transaction {
 }
 
 export function TransactionsTable(){
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-
-  useEffect(() =>{
-    api.get('transactions').then(response => setTransactions(response.data.transactions));
-  }, []);
+  const { transactions } = useTransactions();
 
   return (
     <Container>
@@ -30,7 +25,7 @@ export function TransactionsTable(){
           </tr>
         </thead>
         <tbody>
-          {transactions.map(transaction => {
+          {transactions.map((transaction: Transaction) => {
             return (
               <tr key={transaction.id}>
                 <td>{transaction.title}</td>
